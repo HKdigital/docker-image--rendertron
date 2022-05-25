@@ -2,20 +2,6 @@ version: "3.9"
 
 services:
 
-  # == Webserver
-
-  webserver:
-    image: hkdigital/nginx
-
-    restart: always
-
-    environment:
-      - INSTALL_DEFAULTS=spa-with-prerender
-
-    networks:
-      - default
-      - prerender
-
   # == Prerender service
 
   rendertron:
@@ -23,6 +9,9 @@ services:
     # image: hkdigital-rendertron   # local
 
     restart: always
+
+    ports:
+      - 3000:3000
 
     environment:
       #
@@ -34,8 +23,7 @@ services:
       - rendertron_height=732
 
     networks:
-      - prerender
+      - rendertron
 
 networks:
-  default:
-  prerender:
+  rendertron:
