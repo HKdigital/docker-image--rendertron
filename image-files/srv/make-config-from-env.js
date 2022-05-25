@@ -9,7 +9,7 @@ const fs = require("fs");
 
 /* ---------------------------------------------------------------- Constants */
 
-const CONFIG_FILE_PATH = "/srv/rendertron/config.json";
+const CONFIG_FILE_PATH = "/srv/rendertron/build/config.json";
 const ENV_PREFIX = 'rendertron_';
 
 /* ---------------------------------------------------------------- Internals */
