@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+
+  # == Webserver
+
+  webserver:
+    image: hkdigital/nginx
+
+    restart: always
+
+    environment:
+      - INSTALL_DEFAULTS=spa-with-prerender
+
+    networks:
+      - default
+      - prerender
+
+  # == Prerender service
+
+  rendertron:
+    image: hkdigital/rendertron   # docker-hub
+    # image: hkdigital-rendertron   # local
+
+    restart: always
+
+    environment:
+      #
+      # @see configuration section in README for all supported parameters
+      #
+
+      # Width and height used by Googlebot Smartphone (2022-05-25): 412x732
+      - rendertron_width=412
+      - rendertron_height=732
+
+    networks:
+      - prerender
+
+networks:
+  default:
+  prerender:
